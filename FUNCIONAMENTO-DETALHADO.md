@@ -46,7 +46,7 @@ Esta aplicação demonstra uma arquitetura completa de microsserviços usando Do
 🔗 REDE: node-network (bridge)
 │
 ├── 🌍 Host Machine
-│   └── Porta 8088 → [NGINX:80]
+│   └── Porta 8080 → [NGINX:80]
 │
 ├── 🔄 nginx (container)
 │   ├── IP: 172.20.0.3
@@ -99,7 +99,7 @@ Esta aplicação demonstra uma arquitetura completa de microsserviços usando Do
    │
    ├── Carrega configuração nginx.conf
    ├── Configura proxy_pass → app:3000
-   ├── Bind porta 8088:80
+   ├── Bind porta 8080:80
    └── ✅ Proxy reverso ativo
 ```
 
@@ -112,7 +112,7 @@ Esta aplicação demonstra uma arquitetura completa de microsserviços usando Do
 │
 1️⃣ 👤 Cliente
    │
-   └── HTTP GET http://localhost:8088
+   └── HTTP GET http://localhost:8080
        │
 2️⃣ 🔄 Nginx (Proxy Reverso)
    │
@@ -282,7 +282,7 @@ docker volume inspect 02-devops-docker_mysql_data
 ### 🔍 Health Checks
 ```bash
 # Testar aplicação diretamente
-curl http://localhost:8088
+curl http://localhost:8080
 
 # Testar Node.js bypassing nginx
 curl http://localhost:3000  # (se exposta)
@@ -302,7 +302,7 @@ docker exec app ping db
    │
    ├── Editar código em ./node/
    ├── Mudanças refletidas automaticamente (volume bind)
-   └── Testar: http://localhost:8088
+   └── Testar: http://localhost:8080
    │
 2️⃣ Build & Deploy
    │

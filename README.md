@@ -9,14 +9,13 @@ docker-compose up -d --build
 
 2. Acesse a aplicação em:
 ```
-http://localhost:8088
+http://localhost:8080
 ```
 
 3. A cada refresh da página, um novo nome será adicionado ao banco de dados e exibido na lista.
 
 ## Documentação
 
-- 📋 **[DESAFIO-NGINX-NODE.md](./DESAFIO-NGINX-NODE.md)** - Análise completa do desafio e correções implementadas
 - 🔧 **[FUNCIONAMENTO-DETALHADO.md](./FUNCIONAMENTO-DETALHADO.md)** - Funcionamento interno da aplicação com fluxos detalhados
 
 ## Para parar os containers
@@ -34,7 +33,7 @@ docker-compose up -d --build
 
 ## Arquitetura
 
-- **Nginx**: Proxy reverso na porta 8088
+- **Nginx**: Proxy reverso na porta 8080
 - **Node.js**: Aplicação backend na porta 3000 (interna)
 - **MySQL**: Banco de dados na porta 3306 (interna)
 
