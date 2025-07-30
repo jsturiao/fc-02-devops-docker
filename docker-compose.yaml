@@ -1,19 +1,28 @@
 version: '3'
 
 services: 
+  nginx:
+    build: 
+      context: nginx
+    container_name: nginx
+    ports: 
+      - "8088:80"
+    networks: 
+      - node-network
+    depends_on: 
+      - app
 
   app:
     build: 
       context: node
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh node index.js
     networks: 
       - node-network
     volumes: 
       - ./node:/usr/src/app
+      - /usr/src/app/node_modules
     tty: true
-    ports: 
-      - "3000:3000"
     depends_on: 
        - db
 
@@ -24,15 +33,16 @@ services:
     restart: always
     tty: true
     volumes: 
-      - ./mysql:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     environment: 
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
     networks: 
       - node-network
 
-    
-
 networks: 
   node-network:
-    driver: bridge      
+    driver: bridge
+
+volumes:
+  mysql_data:      

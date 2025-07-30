@@ -1,6 +1,5 @@
 FROM nginx:latest
 
-COPY html /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
